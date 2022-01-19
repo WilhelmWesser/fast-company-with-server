@@ -17,6 +17,7 @@ const RegisterForm = () => {
         password: "",
         profession: "",
         sex: "male",
+        name: "",
         qualities: [],
         licence: false
     });
@@ -27,11 +28,12 @@ const RegisterForm = () => {
         value: q._id
     }));
     const { professions } = useProfessions();
-    const professionList = professions.map((p) => ({
+    const professionsList = professions.map((p) => ({
         label: p.name,
         value: p._id
     }));
     const [errors, setErrors] = useState({});
+
     const handleChange = (target) => {
         setData((prevState) => ({
             ...prevState,
@@ -45,6 +47,15 @@ const RegisterForm = () => {
             },
             isEmail: {
                 message: "Email введен некорректно"
+            }
+        },
+        name: {
+            isRequired: {
+                message: "Имя обязательно для заполнения"
+            },
+            name: {
+                message: "Имя должно составлять минимум из 3 символов",
+                value: 3
             }
         },
         password: {
@@ -110,6 +121,13 @@ const RegisterForm = () => {
                 error={errors.email}
             />
             <TextField
+                label="Имя"
+                name="name"
+                value={data.name}
+                onChange={handleChange}
+                error={errors.name}
+            />
+            <TextField
                 label="Пароль"
                 type="password"
                 name="password"
@@ -119,9 +137,9 @@ const RegisterForm = () => {
             />
             <SelectField
                 label="Выбери свою профессию"
-                name="profession"
                 defaultOption="Choose..."
-                options={professionList}
+                name="profession"
+                options={professionsList}
                 onChange={handleChange}
                 value={data.profession}
                 error={errors.profession}

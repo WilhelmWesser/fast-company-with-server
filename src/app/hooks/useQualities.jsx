@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
-import qualityService from "../services/quality.service";
+import qualityService from "../services/qaulity.service";
 
 const QualitiesContex = React.createContext();
 
