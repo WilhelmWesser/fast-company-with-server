@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { useHistory } from "react-router-dom";
 import { validator } from "../../../utils/validator";
 import TextField from "../../common/form/textField";
 import SelectField from "../../common/form/selectField";
@@ -9,14 +8,12 @@ import BackHistoryButton from "../../common/backButton";
 import { useAuth } from "../../../hooks/useAuth";
 import { useProfessions } from "../../../hooks/useProfession";
 import { useQualities } from "../../../hooks/useQualities";
-// import userService from "../../../services/user.service";
 
 const EditUserPage = () => {
     const { professions } = useProfessions();
     const { qualities } = useQualities();
     const { currentUser } = useAuth();
     const { updateUser } = useAuth();
-    // const history = useHistory();
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState({});
     const getProfessionById = (id) => {

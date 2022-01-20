@@ -110,7 +110,6 @@ const AuthProvider = ({ children }) => {
     }
     async function updateUser(data) {
         try {
-            console.log(data);
             const newData = {
                 ...data,
                 qualities:
@@ -118,7 +117,6 @@ const AuthProvider = ({ children }) => {
                         ? data.qualities
                         : data.qualities.map((qual) => qual.value)
             };
-            console.log(newData);
             const { content } = await userService.update(newData);
             console.log(content);
             history.push(`/users/${newData._id}`);
