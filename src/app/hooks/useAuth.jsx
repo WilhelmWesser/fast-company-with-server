@@ -109,14 +109,22 @@ const AuthProvider = ({ children }) => {
         }
     }
     async function updateUser(data) {
-        console.log(data);
-        const newData = {
-            ...data,
-            qualities: data.qualities.map((qual) => qual.value)
-        };
-        console.log(newData);
-        const { content } = await userService.update(newData);
-        console.log(content);
+        try {
+            console.log(data);
+            const newData = {
+                ...data,
+                qualities:
+                    typeof data.qualities[0] === "string"
+                        ? data.qualities
+                        : data.qualities.map((qual) => qual.value)
+            };
+            console.log(newData);
+            const { content } = await userService.update(newData);
+            console.log(content);
+            history.push(`/users/${newData._id}`);
+        } catch (error) {
+            errorCatcher(error);
+        }
     }
     function errorCatcher(error) {
         const { message } = error.response.data;
